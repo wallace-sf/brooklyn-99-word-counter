@@ -19,11 +19,11 @@ All subtitles from season 1. The subtitle files is in `data/legends` dir.
 
 ### Features
 
-- [x] Lê somente arquivos .str
-- [x] Remove símbolos
-- [x] Remove linhas vazias, linhas de tempo e créditos.
-- [x] Filtra somente palavras 
-- [x] Agrupa palavras
-- [x] Capitaliza palavras
-- [x] Ordenada por quantidade e nome
-- [x] Salva em um arquivo .JSON
+- [x] Read only .str files
+- [x] Remove symbols
+- [x] Remove empty lines, timelines and credits.
+- [x] Filter only words 
+- [x] Group words
+- [x] Capitalize words
+- [x] Order by qty and name
+- [x] Save in a .JSON file
