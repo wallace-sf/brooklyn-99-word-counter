@@ -14,7 +14,7 @@ All subtitles from season 1. The subtitle files is in `data/legends` dir.
 
 ## Results
  - Amount: `6877` words
- - Most spoken word: `I`. Qty: `2495y`
+ - Most spoken word: `I`. Qty: `2495`
  - Less spoken word: `Zumowski's`. Qtd `1`
 
 ### Features
