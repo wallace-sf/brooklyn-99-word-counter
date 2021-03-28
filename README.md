@@ -3,9 +3,15 @@
 </h1>
 
 # Brooklyn 99 word subtitles counter
+Project that tells words from the Brooklyn 99 series. The objective is to put into practice the fundamentals of functional programming.
 
 ## About
-Project that tells words from the Brooklyn 99 series. The objective is to put into practice the fundamentals of functional programming.
+All subtitles from season 1. The subtitle files is in `data/legends` dir.
+
+## Results
+ - Amount: `6877` words
+ - Most spoken word: `I`. Qty: `2495y`
+ - Less spoken word: `Zumowski's`. Qtd `1`
 
 <p align="center">
   <img src="https://img.shields.io/badge/language-javascript-green"/>
