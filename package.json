@@ -2,10 +2,14 @@
   "name": "brooklyn-99-word-counter",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "repository": "https://github.com/wallace-sf/brooklyn-99-word-counter.git",
   "author": "Wallace <wallaceedua@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "rxjs": "6.0.0"
   }
 }

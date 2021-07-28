@@ -1,48 +1,46 @@
 const path = require("path");
+const { concatAll, toArray, concatMap } = require("rxjs/operators");
 
+const { readDir$, readFile$ } = require("./observables");
 const {
-  readDirPromised,
-  getStrFiles,
-  readAllFiles,
-  writeFilePromised,
+  filterFilesByFormat,
+  toJoinedArrays,
   removeSubStrFromStr,
+  toSplittedStr,
   removeElementsIfEmpty,
   removeElementsIfIncludes,
-  removeIfOnlyNumbers,
-  toStringArr,
-  toSplittedStr,
+  removeIfStartWithNumber,
   getWordsOnly,
+  toFlattedArr,
   toCapitalizedArr,
-  toJoinedArrays,
   mapWordInObj,
   groupByWord,
   orderByQty,
-  toFlattedArr,
-} = require("./utils");
+} = require("./operators");
+const { writeFile } = require("./observers");
+const { STR_FORMAT } = require("./regex");
 
 const pathSubtitles = path.join(__dirname, "./data/legendas");
-const pathWriteFileSubstitle = path.join(__dirname, 'word_counter_bb99.json');
+const pathWriteFileSubstitle = path.join(__dirname, "word_counter_bb99.json");
 
-console.log(pathWriteFileSubstitle);
-
-readDirPromised(pathSubtitles)
-  .then(getStrFiles)
-  .then(readAllFiles(pathSubtitles))
-  .then(toStringArr)
-  .then(toJoinedArrays)
-  .then(removeSubStrFromStr(["<i>", "</i>", "\r"]))
-  .then(toSplittedStr("\n"))
-  .then(removeElementsIfEmpty)
-  .then(removeElementsIfIncludes(["-->", "<font", "</font>"]))
-  .then(removeIfOnlyNumbers)
-  .then(getWordsOnly)
-  .then(toFlattedArr)
-  .then(removeElementsIfEmpty)
-  .then(toCapitalizedArr)
-  .then(mapWordInObj)
-  .then(groupByWord)
-  .then(orderByQty)
-  .then((arrWords) =>
-    writeFilePromised(pathWriteFileSubstitle, JSON.stringify(arrWords))
+readDir$(pathSubtitles)
+  .pipe(
+    concatAll(),
+    filterFilesByFormat(STR_FORMAT),
+    concatMap(readFile$(pathSubtitles)),
+    toArray(),
+    toJoinedArrays(),
+    removeSubStrFromStr(["<i>", "</i>", "\r"]),
+    toSplittedStr("\n"),
+    removeElementsIfEmpty(),
+    removeElementsIfIncludes(["<font", "</font>"]),
+    removeIfStartWithNumber(),
+    getWordsOnly(),
+    toFlattedArr(),
+    removeElementsIfEmpty(),
+    toCapitalizedArr(),
+    mapWordInObj(),
+    groupByWord(),
+    orderByQty()
   )
-  .catch(console.log);
+  .subscribe(writeFile(pathWriteFileSubstitle));
