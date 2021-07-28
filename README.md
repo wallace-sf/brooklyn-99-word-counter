@@ -12,6 +12,11 @@ Project that tells words from the Brooklyn 99 series. The objective is to put in
 ## About
 All subtitles from season 1. The subtitle files is in `data/legends` dir.
 
+## Quick Start
+```shell
+$ yarn start
+```
+
 ## Results
  - Amount: `6877` words
  - Most spoken word: `I`. Qty: `2495`
